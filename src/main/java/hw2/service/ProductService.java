@@ -1,5 +1,6 @@
 package hw2.service;
 
+//import hw2.dao.EntityManagerProductDao;
 import hw2.model.Product;
 import hw2.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
+//    private final EntityManagerProductDao entityManagerProductDao;
 
 
     public Product saveProduct(Product product) {
@@ -19,12 +21,19 @@ public class ProductService {
     }
 
 
-    public Product getProductById(Integer id) {
-        return productRepository.findById(id).orElseThrow(NoSuchElementException::new);
+    public Product getProductById(Long id) {
+        return productRepository.findById(id);
+//                .orElseThrow(NoSuchElementException::new);
     }
 
     public List<Product> getAllProducts() {
+//        return entityManagerProductDao.findAll();
         return productRepository.findAll();
+    }
+
+
+    public void deleteById(Integer id) {
+        productRepository.deleteById(id);
     }
 
 }

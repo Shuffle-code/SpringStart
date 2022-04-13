@@ -20,9 +20,21 @@
     </c:forEach>
 </ul>
 <br>
+<h2>Product List:</h2>
+<c:forEach var="product" items="${products}">
+    <c:url var="viewUrl" value="/products/ + ${product.id}"/>
+    <li>
+        <a href="${viewUrl}">View</a>
+        <br>
+        Product title: ${product.title}
+        <br>
+        Product price: ${product.price}
+        <br>
+    </li>
+</c:forEach>
+<br>
 <c:url var="addProductUrl" value="/products/add"/>
 <a href="${addProductUrl}">Add Product</a>
-
 <h4>Products: ${products}</h4>
 </body>
 </html>

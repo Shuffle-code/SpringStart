@@ -2,17 +2,32 @@ package hw2.model;
 
 import lombok.*;
 
+import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Objects;
 
-@Builder
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@Builder
+@Entity
+@Table(name = "Product")
+@NamedQueries({
+        @NamedQuery(name = "Product.findNameById",
+                query = "select p.title from Product p where p.id = :id"),
+        @NamedQuery(name = "Product.findById",
+                query = "select p from Product p where p.id = :id")
+})
 public class Product {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+    @Column(name = "title")
     private String title;
+    @Column(name = "price")
     private Double price;
 
     @Override
@@ -26,5 +41,14 @@ public class Product {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Product(" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", price=" + price +
+                ')';
     }
 }
