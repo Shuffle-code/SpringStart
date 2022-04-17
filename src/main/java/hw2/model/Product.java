@@ -18,7 +18,9 @@ import java.util.Objects;
         @NamedQuery(name = "Product.findNameById",
                 query = "select p.title from Product p where p.id = :id"),
         @NamedQuery(name = "Product.findById",
-                query = "select p from Product p where p.id = :id")
+                query = "select p from Product p where p.id = :id"),
+        @NamedQuery(name = "Product.deleteById",
+                query = "DELETE FROM Product WHERE id = :id"),
 })
 public class Product {
     @Id

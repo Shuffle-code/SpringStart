@@ -50,7 +50,7 @@ public class ProductController {
 
     // localhost:8080/spring/message/delete?id=1
     @RequestMapping(path = "/delete", method = RequestMethod.GET)
-    public String deleteById(@RequestParam Integer id) {
+    public String deleteById(@RequestParam Long id) {
 //        log.info("deleted: {}", id);
         service.deleteById(id);
 //        return "redirect:list-product";

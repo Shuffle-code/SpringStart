@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -27,6 +29,8 @@ import java.util.Properties;
 @PropertySource("classpath:jdbc.properties")
 @ComponentScan("hw2")
 @EnableTransactionManagement
+@EnableJpaRepositories(basePackages = "hw2.dao")
+//@EnableJpaAuditing(auditorAwareRef = "auditorAwareBean")
 public class JpaConfig {
     @Value("${driverClassName}")
     private String driverClassName;
